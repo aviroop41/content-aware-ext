@@ -76,7 +76,7 @@ Once the extension is loaded and the server is running:
 
 ## Development
 
-- The extension's main functionality is in `extension/content.js` and `extension/popup.js`
+- The extension's main functionality is in `extension/popup.js`
 - The WebSocket server handles communication between the extension and the AI service
 - The Rust library (`src/lib.rs`) provides additional functionality
 
