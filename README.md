@@ -8,6 +8,15 @@ A browser extension that provides AI assistance while browsing the web.
 - npm (Node Package Manager)
 - Chrome/Chromium-based browser
 
+## Technologies
+
+- Rust - Systems programming language used for core functionality
+- WebSocket - Real-time bidirectional communication between browser and server
+- OpenAI - Powerful AI models for code assistance and generation
+- WebAssembly - Enables running Rust code in the browser at near-native speed
+- Node.js - Runtime environment for the WebSocket server
+
+
 ## Setup Instructions
 
 1. Clone the repository:
