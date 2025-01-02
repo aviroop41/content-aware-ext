@@ -70,9 +70,9 @@ npm start
 ## Usage
 
 Once the extension is loaded and the server is running:
-1. Open any code file in your browser
+1. Open any webpage in your browser
 2. Click the extension icon in your browser toolbar
-3. Use the assistant to get help with your code
+3. Use the assistant to get help with your page
 
 ## Development
 
