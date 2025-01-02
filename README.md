@@ -50,8 +50,8 @@ OPENAI_API_KEY=your_api_key_here
 4. Build the project:
 
 ``` bash
-chmod +x build.sh
-./build.sh
+chmod +x build-wasm.sh
+./build-wasm.sh
 ```
 
 5. Start the WebSocket server:
