@@ -90,4 +90,4 @@ If you encounter any issues:
 
 ## License
 
-MIT Open Source License# content-aware-ext
+MIT Open Source License - [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
