@@ -31,7 +31,7 @@ cp websocket-server/.env.example websocket-server/.env
 Then edit the `.env` file and add your API key:
 
 ``` bash
-API_KEY=your_api_key_here
+OPENAI_API_KEY=your_api_key_here
 ```
 
 4. Build the project:
