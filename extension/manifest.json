@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "WASM Extension",
+    "name": "Content-Aware Assistant",
     "description": "A browser extension that knows what you're looking at, powered by Rust, WebAssembly, and OpenAI",
-    "version": "1.0",
+    "version": "0.1",
     "icons": {
         "16": "icon.png",
         "48": "icon.png",
