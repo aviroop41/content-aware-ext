@@ -21,12 +21,16 @@ A browser extension that provides AI assistance while browsing the web.
 
 1. Clone the repository:
 
+``` bash
 git clone <repository-url>
 cd <repository-name>
+```
 
 2. Install dependencies:
 
+``` bash
 npm install
+```
 
 3. Configure the environment:
    - Navigate to the `websocket-server` directory
