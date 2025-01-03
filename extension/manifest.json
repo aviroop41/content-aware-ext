@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Content-Aware Assistant",
+    "name": "Atom Assist",
     "description": "A browser extension that knows what you're looking at, powered by Rust, WebAssembly, and OpenAI",
     "version": "0.1",
     "icons": {
@@ -10,7 +10,8 @@
     },
     "permissions": [
         "activeTab",
-        "scripting"
+        "scripting",
+        "sidePanel"
     ],
     "action": {
         "default_popup": "popup.html",
@@ -22,6 +23,13 @@
     },
     "content_security_policy": {
         "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+    },
+    "side_panel": {
+        "default_path": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
     }
 }
   
