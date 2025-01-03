@@ -14,7 +14,9 @@
         "sidePanel",
         "tabs",
         "<all_urls>",
-        "host_permissions"
+        "host_permissions",
+        "identity",
+        "identity.email"
     ],
     "host_permissions": [
         "<all_urls>"

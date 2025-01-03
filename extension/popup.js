@@ -21,12 +21,38 @@ async function initializeWasm() {
 // Initialize WASM immediately
 initializeWasm();
 
+// Add this function to get user info
+async function getUserInfo() {
+  try {
+    // Get basic info
+    const basicInfo = await chrome.identity.getProfileUserInfo();
+    
+    // Get extended info
+    const extendedInfo = await chrome.identity.getProfileUserInfo({ accountStatus: 'ANY' });
+    
+    return {
+      email: basicInfo.email,
+      id: basicInfo.id,
+      name: extendedInfo.name,
+      givenName: extendedInfo.givenName,
+      familyName: extendedInfo.familyName,
+      username: basicInfo.email.split('@')[0] // fallback/alternative
+    };
+  } catch (error) {
+    console.error('Error fetching user info:', error);
+    return null;
+  }
+}
+
 // Wait for DOM content to be loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const messagesContainer = document.getElementById('chat-messages');
   const userInput = document.getElementById('user-input');
   const sendButton = document.getElementById('send-message');
 
+  // Get user info
+  const userInfo = await getUserInfo();
+  
   // Function to add message to chat UI
   function addMessageToChat(content, isUser = false) {
     const messageDiv = document.createElement('div');
@@ -136,12 +162,35 @@ document.addEventListener('DOMContentLoaded', () => {
     addMessageToChat("Error: Could not connect to server", false);
   };
 
-  // Add welcome message
+  // Update the welcome message to include user info
   const welcomeMessage = document.createElement('div');
   welcomeMessage.classList.add('message', 'assistant-message', 'initial-message');
   welcomeMessage.innerHTML = `
-    <p>👋 Hello! I'm your AI assistant.</p>
+    <div class="user-profile">
+      <p>👋 Hello${userInfo?.givenName ? ` ${userInfo.givenName}` : userInfo?.name ? ` ${userInfo.name}` : ''}!</p>
+    </div>
+    <p>I'm your AI assistant.</p>
     <p>I can help you understand web pages better by analyzing their content and context. Just ask me anything!</p>
   `;
   messagesContainer.appendChild(welcomeMessage);
+
+  // Add detailed user info message
+  if (userInfo) {
+    const userInfoMessage = document.createElement('div');
+    userInfoMessage.classList.add('message', 'assistant-message', 'user-info-message');
+    userInfoMessage.innerHTML = `
+      <div class="user-info-details">
+        <h3>Your Profile Information:</h3>
+        <ul>
+          ${userInfo.givenName ? `<li><strong>First Name:</strong> <span class="info-value">${userInfo.givenName}</span></li>` : ''}
+          ${userInfo.familyName ? `<li><strong>Last Name:</strong> <span class="info-value">${userInfo.familyName}</span></li>` : ''}
+          ${userInfo.name ? `<li><strong>Full Name:</strong> <span class="info-value">${userInfo.name}</span></li>` : ''}
+          ${userInfo.email ? `<li><strong>Email:</strong> <span class="info-value">${userInfo.email}</span></li>` : ''}
+          ${userInfo.username ? `<li><strong>Username:</strong> <span class="info-value">${userInfo.username}</span></li>` : ''}
+          ${userInfo.id ? `<li><strong>User ID:</strong> <span class="info-value user-id">${userInfo.id}</span></li>` : ''}
+        </ul>
+      </div>
+    `;
+    messagesContainer.appendChild(userInfoMessage);
+  }
 });
