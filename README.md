@@ -2,6 +2,9 @@
 
 A browser extension that provides AI assistance while browsing the web.
 
+![image](https://github.com/user-attachments/assets/ad396d79-2e6d-4146-ae26-e9bbb5204ebf)
+
+
 ## Prerequisites
 
 - Node.js (v14 or higher)
