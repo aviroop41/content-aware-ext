@@ -242,3 +242,97 @@
     border-bottom: 1px solid rgba(33, 150, 243, 0.2);
     margin-bottom: 16px;
   }
+  
+  .user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 0.5em;
+    border: 2px solid var(--primary-color);
+  }
+  
+  .initial-message {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: normal;
+    border-bottom: 1px solid rgba(33, 150, 243, 0.2);
+    margin-bottom: 16px;
+  }
+  
+  .initial-message p {
+    margin: 0.5em 0;
+  }
+  
+  .user-email {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.2em;
+  }
+  
+  .user-id {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.2em;
+    font-family: monospace;
+  }
+  
+  .user-info-message {
+    background: var(--message-assistant);
+    margin: 10px 20px 10px 0;
+    padding: 15px;
+  }
+  
+  .user-info-details h3 {
+    color: var(--primary-color);
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .user-info-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .user-info-details li {
+    margin: 8px 0;
+    font-size: 0.9em;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    word-break: break-word;
+  }
+  
+  .user-info-details strong {
+    color: rgba(255, 255, 255, 0.7);
+    min-width: 100px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  
+  .user-info-details .user-id {
+    font-family: monospace;
+    color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  .user-info-details .info-value {
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
