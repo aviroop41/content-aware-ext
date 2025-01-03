@@ -24,8 +24,7 @@
     text-align: center;
     margin-bottom: 16px;
     padding-bottom: 12px;
-    border-bottom: 2px solid var(--primary-color);
-  }
+      }
   
   .header h1 {
     margin: 0;
@@ -61,6 +60,91 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     font-size: 15px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  
+  .message p {
+    margin: 0.5em 0;
+    color: var(--text-light);
+  }
+  
+  .message h1, .message h2, .message h3, .message h4, .message h5, .message h6 {
+    margin: 1em 0 0.5em 0;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  
+  .message code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  
+  .message pre {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1em;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1em 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .message pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+  
+  .message ol,
+  .message ul {
+    margin: 0.5em 0;
+    padding-left: 2em;
+  }
+  
+  .message li {
+    margin: 0.3em 0;
+    color: var(--text-light);
+  }
+  
+  .message blockquote {
+    border-left: 4px solid var(--primary-color);
+    margin: 1em 0;
+    padding-left: 1em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .message a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  .message a:hover {
+    text-decoration: underline;
+  }
+  
+  .message img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin: 1em 0;
+  }
+  
+  .message table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+  }
+  
+  .message th, .message td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5em;
+    text-align: left;
+  }
+  
+  .message th {
+    background: rgba(255, 255, 255, 0.05);
   }
   
   .user-message {
@@ -134,4 +218,27 @@
   
   ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
+  }
+  
+  .message strong {
+    font-weight: 600;
+    color: var(--text-light);
+  }
+  
+  /* Ensure proper spacing between elements */
+  .message > *:first-child {
+    margin-top: 0;
+  }
+  
+  .message > *:last-child {
+    margin-bottom: 0;
+  }
+  
+  .initial-message {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    border-bottom: 1px solid rgba(33, 150, 243, 0.2);
+    margin-bottom: 16px;
   }

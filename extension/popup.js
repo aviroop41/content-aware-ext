@@ -32,9 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message');
     messageDiv.classList.add(isUser ? 'user-message' : 'assistant-message');
-    messageDiv.textContent = content;
+    
+    // Simply use innerHTML for assistant messages and textContent for user messages
+    if (isUser) {
+      messageDiv.textContent = content;
+    } else {
+      messageDiv.innerHTML = content;
+    }
+    
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  async function captureScreenshot() {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    try {
+      const screenshot = await chrome.tabs.captureVisibleTab(null, { format: 'png' });
+      return screenshot.split(',')[1]; // Remove the data:image/png;base64, prefix
+    } catch (error) {
+      console.error("Screenshot capture failed:", error);
+      return null;
+    }
   }
 
   // Function to send message
@@ -60,6 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Get the active tab's content
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       
+      // Capture screenshot
+      const screenshot = await captureScreenshot();
+      
       // Execute content script to get page content
       const [{result}] = await chrome.scripting.executeScript({
         target: { tabId: tab.id },
@@ -67,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Process the context through WASM
-      const chatContext = new ChatContext(result);
-      const processedContext = chatContext.get_relevant_text();
+      const chatContext = new ChatContext(result, screenshot);
+      const processedContext = chatContext.get_processed_context();
 
       // Send message and context to server
       socket.send(JSON.stringify({
@@ -97,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const response = JSON.parse(event.data);
       if (response.type === 'message') {
-        addMessageToChat(response.content, false);
+        // Remove any wrapping <p> tags around code blocks if they exist
+        const cleanContent = response.content.replace(/<p>```(.*?)```<\/p>/g, '```$1```');
+        addMessageToChat(cleanContent, false);
       } else if (response.type === 'error') {
         addMessageToChat(`Error: ${response.content}`, false);
       }
@@ -114,5 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Add welcome message
-  addMessageToChat("Hello! I'm your AI assistant. How can I help you today?", false);
+  const welcomeMessage = document.createElement('div');
+  welcomeMessage.classList.add('message', 'assistant-message', 'initial-message');
+  welcomeMessage.innerHTML = `
+    <p>👋 Hello! I'm your AI assistant.</p>
+    <p>I can help you understand web pages better by analyzing their content and context. Just ask me anything!</p>
+  `;
+  messagesContainer.appendChild(welcomeMessage);
 });
